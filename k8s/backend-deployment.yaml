@@ -5,48 +5,65 @@ metadata:
   namespace: food-delivery
   labels:
     app: backend
+
 spec:
   replicas: 2
+
   selector:
     matchLabels:
       app: backend
+
   template:
     metadata:
       labels:
         app: backend
+
     spec:
       containers:
         - name: backend
-          image: food-backend:1.0
+          image: ghcr.io/vasanthreddylingala/food-delivery-backend:latest
           imagePullPolicy: IfNotPresent
+
           ports:
             - containerPort: 8080
               name: http
+
           envFrom:
             - configMapRef:
                 name: food-delivery-config
+
             - secretRef:
                 name: food-delivery-secret
+
           resources:
             requests:
               cpu: 200m
               memory: 512Mi
+
             limits:
               cpu: 500m
               memory: 1Gi
+
+          startupProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
+
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
               port: 8080
-            initialDelaySeconds: 45
             periodSeconds: 15
             timeoutSeconds: 5
             failureThreshold: 3
+
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: 8080
-            initialDelaySeconds: 25
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 3
