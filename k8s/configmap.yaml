@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: food-delivery-config
+  namespace: food-delivery
+  labels:
+    app.kubernetes.io/name: food-delivery
+data:
+  # MySQL Connection Parameters
+  MYSQL_HOST: "mysql"
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: "food_delivery"
+  
+  # Redis Connection Parameters
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+
+  # Spring Boot Parameters
+  SERVER_PORT: "8080"

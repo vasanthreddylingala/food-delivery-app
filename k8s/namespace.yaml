@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: food-delivery
+  labels:
+    app.kubernetes.io/name: food-delivery
+    app.kubernetes.io/part-of: food-delivery-system

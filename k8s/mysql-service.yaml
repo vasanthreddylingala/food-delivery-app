@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: food-delivery
+  labels:
+    app: mysql
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+      name: mysql
+  clusterIP: None  # Headless service providing stable network identity (mysql-0.mysql.food-delivery.svc.cluster.local)
+  selector:
+    app: mysql
