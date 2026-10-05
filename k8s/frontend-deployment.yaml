@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: food-frontend:1.0
+          image: ghcr.io/vasanthreddylingala/food-delivery-frontend:725fcad91d680dae8e8815ec1b1dc149aec5c4b9
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
