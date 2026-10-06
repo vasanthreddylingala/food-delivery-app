@@ -19,9 +19,10 @@ spec:
         app: backend
 
     spec:
+      automountServiceAccountToken: false
       containers:
         - name: backend
-          image: ghcr.io/vasanthreddylingala/food-delivery-backend:725fcad91d680dae8e8815ec1b1dc149aec5c4b9
+          image: ghcr.io/vasanthreddylingala/food-delivery-backend:security-review
           imagePullPolicy: IfNotPresent
 
           ports:
